@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DetailUser extends Model
 {
@@ -33,5 +33,10 @@ class DetailUser extends Model
     // one to one
     public function user(){
         return $this->belongsTo('App/Models/User', 'users_id', 'id');
+    }
+
+    //one to many
+    public function experience_user(){
+        return $this->hasMany('App\Models\ExperienceUser', 'detail_user_id');
     }
 }

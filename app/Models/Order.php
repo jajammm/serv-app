@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
@@ -38,5 +38,13 @@ class Order extends Model
 
     public function user_freelancer(){
         return $this->belongsTo('App/Models/User', 'freelancer_id', 'id');
+    }
+
+    public function service(){
+        return $this->belongsTo('App/Models/Service', 'service_id', 'id');
+    }
+
+    public function order_status(){
+        return $this->belongsTo('App/Models/OrderStatus', 'order_status_id', 'id');
     }
 }
