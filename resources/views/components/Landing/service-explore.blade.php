@@ -14,7 +14,7 @@
         </div>
 
         <!--Banner image-->
-        <img class="rounded-2xl w-full" src="{{ url('https://via.placeholder.com/750x500" alt="placeholder') }}" />
+        <img class="rounded-2xl w-full" src="{{ url('https://via.placeholder.com/750x500') }}" alt="placeholder" />
 
         <!--Title-->
         <h1 class="font-semibold text-gray-900 text-lg mt-1 leading-normal py-4">
