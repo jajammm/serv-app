@@ -89,7 +89,7 @@ class LandingController extends Controller
     }
 
     public function detail($id){
-
+        return view('pages.landing.detail');
     }
 
     public function booking($id){
