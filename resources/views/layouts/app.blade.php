@@ -9,7 +9,7 @@
 
     @stack('before-style')
 
-    @include('includes.dashboard.script')
+    @include('includes.dashboard.style')
 
     @stack('after-style')
 
@@ -38,11 +38,11 @@
 
     </div>
 
-    @stack('before-style')
+    @stack('before-script')
 
     @include('includes.dashboard.script')
 
-    @stack('after-style')
+    @stack('after-script')
 
 </body>
 
