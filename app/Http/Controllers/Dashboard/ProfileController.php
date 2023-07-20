@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 
 use App\Models\User;
 use App\Models\DetailUser;
@@ -101,7 +102,7 @@ class ProfileController extends Controller
        $get_photo = DetailUser::where('users_id', Auth::user()->id)->first();
 
        // delete old file from storage
-       if(isset($data_detail_user('photo'))){
+       if(isset($data_detail_user['photo'])){
             $data = 'storage'.$get_photo['photo'];
             if(File::exists($data)){
                 File::delete($data);
@@ -124,6 +125,31 @@ class ProfileController extends Controller
        //proses to save detail user
        $detail_user = DetailUser::find($user->detail_user->id);
        $detail_user->update($data_detail_user);
+
+       //proses save to experience
+       $experience_user_id = ExperienceUser::where('detail_user_id', $detail_user['id'])->first();
+       if(isset($experience_user_id)){
+            
+            foreach ($data_profile['experience'] as $key => $value) {
+                $experience_user = ExperienceUser::find($key);
+                $experience_user->detail_user_id =$detail_user['id'];
+                $experience_user->experience = $value;
+                $experience_user->save();
+            }
+
+       }else{
+        foreach ($data_profile['experience'] as $key => $value) {
+            if(isset($value)){
+                $experience_user = new ExperienceUser;
+                $experience_user->detail_user_id = $detail_user['id'];
+                $experience_user->experience = $value;
+                $experience_user->save();
+            }
+        }
+       }
+
+       toast()->success('Update has been success');
+       return back();
     }
 
     /**
@@ -140,6 +166,24 @@ class ProfileController extends Controller
     //custom
 
     public function delete(){
-        
+        // get user
+        $get_user_photo = DetailUser::where('users_id', Auth::user()->id)->first();
+        $path_photo = $get_user_photo['photo'];
+
+        // second update value to null
+        $data = DetailUser::find($get_user_photo['id']);
+        $data->photo = NULL;
+        $data->save();
+
+        // delete file photo
+        $data = 'storage/'.$path_photo;
+        if(File::exists($data)){
+            File::delete($data);
+        }else{
+            File::delete('storage/app/public/'.$path_photo);
+        }
+
+        toast()->success('Delete has been success');
+        return back();
     }
 }
