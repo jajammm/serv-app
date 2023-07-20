@@ -31,10 +31,10 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'name' => [
-                'required', 'string', 'max:225',
+                'required', 'string', 'max:255',
             ],
             'email' => [
-                'required', 'string', 'max:225', 'email', Rule::unique('users')->where('id', '<>', 
+                'required', 'string', 'max:255', 'email', Rule::unique('users')->where('id', '<>', 
                 Auth::user()->id)
             ],
         ];
