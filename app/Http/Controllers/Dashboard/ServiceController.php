@@ -137,7 +137,7 @@ class ServiceController extends Controller
         $tagline = Tagline::where('service_id', $service['id'])->get();
         $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
         $thumbnail_service = ThumbnailService::where('service_id', $service['id'])->get();
-        return view('pages.dashboard.service.edit');
+        return view('pages.dashboard.service.edit', compact('service', 'advantage_service', 'tagline', 'advantage_user', 'thumbnail_service'));
     }
 
     /**
