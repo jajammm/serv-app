@@ -18,6 +18,7 @@
 <body class="antialiased">
     <div class="flex h-screen bg-serv-service-bg" :class="{ 'overflow-hidden': isSideMenuOpen }">
 
+        @include('sweetalert::alert')
         @include('components.dashboard.desktop')
 
         <div x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150"

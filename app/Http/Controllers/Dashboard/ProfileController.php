@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\User;
 use App\Models\DetailUser;
