@@ -1,9 +1,10 @@
 @extends('layouts.front')
 
-@section('title', 'Home')
+@section('title', ' Home')
 
 @section('content')
-    {{-- Top --}}
+
+    {{-- top --}}
     <div class="hero-bg">
         <!-- hero -->
         <div class="hero">
@@ -36,25 +37,25 @@
             </div>
             <div class="lg:mb-20 mb-10 flex sm:space-x-4 space-x-1">
                 <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('/assets/images/brand-logo/netflix.svg') }}" alt="">
+                    <img src="{{ url('images/brand-logo/netflix.svg') }}" alt="">
                 </div>
                 <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('/assets/images/brand-logo/amazon.svg') }}" alt="">
+                    <img src="{{ url('images/brand-logo/amazon.svg') }}" alt="">
                 </div>
                 <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('/assets/images/brand-logo/uber.svg') }}" alt="">
+                    <img src="{{ url('images/brand-logo/uber.svg') }}" alt="">
                 </div>
                 <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('/assets/images/brand-logo/grab.svg') }}" alt="">
+                    <img src="{{ url('images/brand-logo/grab.svg') }}" alt="">
                 </div>
                 <div class="flex-1 flex items-center justify-center py-3 px-6">
-                    <img src="{{ url('/assets/images/brand-logo/google.svg') }}" alt="">
+                    <img src="{{ url('images/brand-logo/google.svg') }}" alt="">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- content -->
+    {{-- content --}}
     <div class="content">
         <!-- services -->
         <div class="bg-serv-services-bg overflow-hidden">
@@ -65,7 +66,11 @@
                 </div>
                 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar dragscroll -mx-3">
                     <div class="flex flex-nowrap">
-                        @include('components.landing.service')
+                        @forelse ($services as $item)
+                            @include('components.landing.service')
+                        @empty
+                            {{-- empty --}}
+                        @endforelse
                     </div>
 
                 </div>
@@ -99,4 +104,5 @@
             </div>
         </div>
     </div>
+
 @endsection
